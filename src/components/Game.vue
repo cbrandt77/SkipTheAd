@@ -8,6 +8,7 @@ import GameWindowWrapper from "@/components/GameWindowWrapper.vue";
   <header>
     <div class="titlebar">Skip The Ad!</div>
     <div class="navbar"></div>
+    <h2>Game {{ $route.params.id }}</h2>
   </header>
 
   <main>
@@ -44,7 +45,7 @@ header {
   }
   
   header .navbar {
-  
+    
   }
 }
 </style>
