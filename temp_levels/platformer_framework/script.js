@@ -19,27 +19,32 @@ const render = Render.create({
   }
 });
 
-// Create a simple box that will fall due to gravity
-const box = Bodies.rectangle(200, 200, 80, 80, {
-  isStatic: false,          // The box can move (not static)
-  restitution: 0.8,
+// STACK TO FIRE AT - TEMPORARY
+let stack = Matter.Composites.stack(1075,200,6,6,0,0,function(x,y){
+  return Matter.Bodies.polygon(x,y,20,20);
+});
+
+// PLATFORM TO REST STACK ON - TEMPORARY
+const platform = Bodies.rectangle(1200, 500, 300, 20, {
+  isStatic: true,
   render: {
-    fillStyle: 'green'        // Color of the box
+    fillStyle: 'black'
   }
 });
 
-let stack = Matter.Composites.stack(200,200,10,10,0,0,function(x,y){
-  return Matter.Bodies.rectangle(x,y,40,40);
-});
-
-// Create a static ground so the box has something to collide with
-const ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight - 50, window.innerWidth, 60, {
-  isStatic: true,           // Ground is static, it won't move
+// BALL ATTACKED TO SLING FOR FIRE
+let ball = Matter.Bodies.circle(300, 400, 20,{
   render: {
-    fillStyle: 'black'      // Color of the ground
+    fillStyle: 'orange'
   }
 });
+let sling = Matter.Constraint.create({
+  pointA: {x:300, y:400},
+  bodyB: ball,
+  stiffness: 0.05
+});
 
+// MOUSE + MOUSE CONSTRAINT
 let mouse = Matter.Mouse.create(render.canvas);
 let mouseConstraint = Matter.MouseConstraint.create(engine, {
   mouse: mouse,
@@ -50,18 +55,40 @@ let mouseConstraint = Matter.MouseConstraint.create(engine, {
   }
 });
 render.mouse = mouse;
+
+let firing = false;
+Matter.Events.on(mouseConstraint, 'enddrag', function(e){
+  if(e.body === ball) firing = true;
+});
+Matter.Events.on(engine, 'afterUpdate', function(){
+  if(firing && Math.abs(ball.position.x - 300)<20 && Math.abs(ball.position.y-400)<20){
+    ball = Matter.Bodies.circle(300,400,20,{
+      render: {
+        fillStyle: 'orange'
+      }
+    });
+    Matter.World.add(engine.world, ball);
+    sling.bodyB = ball;
+    firing = false;
+  }
+});
+
+Matter.Events.on(engine, 'collisionStart', function(event) {
+  const pairs = event.pairs;
+  
+  pairs.forEach(pair => {
+    // Check if the ball is one of the bodies involved in the collision
+    if (pair.bodyA === ball || pair.bodyB === ball) {
+      console.log('Collision detected with ball!');
+    }
+  });
+});
+
 // Add the box and ground to the world
-World.add(engine.world, [stack, ground, mouseConstraint]);
+World.add(engine.world, [platform, ball, stack, sling, mouseConstraint]);
 
 // Run the engine
 Matter.Runner.run(engine);
 
 // Run the renderer
 Render.run(render);
-
-// Handle window resizing
-window.addEventListener('resize', () => {
-  render.canvas.width = window.innerWidth;
-  render.canvas.height = window.innerHeight;
-  Matter.Body.setPosition(ground, { x: window.innerWidth / 2, y: window.innerHeight - 50 });
-});
