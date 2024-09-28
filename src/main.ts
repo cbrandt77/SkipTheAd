@@ -1,7 +1,7 @@
 import './assets/main.css'
 
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from './homepage.vue'
 import './index.css'
 
 import Game from "@/Game.vue";
