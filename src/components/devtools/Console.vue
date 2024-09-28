@@ -3,9 +3,9 @@
 </script>
 
 <template>
-<div class="devtoolstab">
-  test tab
-</div>
+  <div class="devtoolstab">
+    test tab
+  </div>
 </template>
 
 <style scoped>

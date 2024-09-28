@@ -20,7 +20,6 @@
           <span class="text-sm font-medium ml-2">{{ completedLevels }} / {{ totalLevels }}</span>
         </div>
       </div>
-
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
         <button
           v-for="level in levels"

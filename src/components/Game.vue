@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import FakeDevTools from "@/components/FakeDevTools.vue";
 import GameWindowWrapper from "@/components/GameWindowWrapper.vue";
+import {provide, reactive} from "vue";
+import {INJECT_PROVIDE} from "@/ts/constants";
+import {InspectorDetails} from "@/ts/devtools/Inspector";
+
+const inspectordetails = reactive(new InspectorDetails())
+
+provide(INJECT_PROVIDE.InspectorDetails, inspectordetails)
 </script>
 
 <template>
