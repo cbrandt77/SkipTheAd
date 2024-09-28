@@ -1,18 +1,26 @@
 <script setup lang="ts">
-import { devToolsDetails } from '@/ts/globals'
 
+import {useDevToolsGlobalData} from "@/ts/capabilities";
 
+const deets = useDevToolsGlobalData()
 </script>
 
-<template>
-  <div class="devtoolstab">
-    <table v-for="(line, i) in devToolsDetails.consoleLines" :key="i" class="consolelines">{{ line }}</table>
-  </div>
+<template class="devtoolstab">
+    <div class="toolbar">
+      <v-btn class="clearbutton" id="console-clearbtn" v-tooltip="'Clear Console'" @click="deets.clearConsole()">
+        ButtonThing
+      </v-btn>
+    </div>
+    <table v-for="line in deets.consoleLines" class="consolelines">{{ line }}</table>
 </template>
 
 <style scoped>
 .consolelines {
   background-color:red;
   color:lime;
+}
+
+.clearbutton {
+  position: relative
 }
 </style>

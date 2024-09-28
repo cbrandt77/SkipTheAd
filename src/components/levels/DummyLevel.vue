@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { devToolsDetails } from '@/ts/globals'
-const logLine = (s: string) => devToolsDetails.logLine(s)
+
+import {useDevToolsGlobalData} from "@/ts/capabilities";
+
+const devTools = useDevToolsGlobalData();
 </script>
 
 <template>
 <!--<canvas id="game-canvas"></canvas>-->
-  <button style="color:black" @click="logLine('button clicked')">test</button>
+  <button class="testbutton" @click="devTools.logLine('button clicked')">test</button>
 </template>
 
 <style scoped>

@@ -10,10 +10,7 @@ export class DevToolsDetails {
     
     constructor() {
         this.networkPackets = reactive([])
-        this.consoleLines = reactive<string[]>([])
-        if (!this.consoleLines) {
-            console.error('undfined somefhow?')
-        }
+        this.consoleLines = reactive([])
         this.inspectorDetails = reactive(new InspectorDetails())
     }
     
@@ -24,4 +21,19 @@ export class DevToolsDetails {
     public addPacket(packet: PacketType) {
         this.networkPackets.push(packet)
     }
+    
+    public clearConsole() {
+        this.consoleLines.length = 0;
+    }
+    
+    public clearNetworkPackets() {
+        this.networkPackets.length = 0;
+    }
+    
+    public clearAll() {
+        this.clearNetworkPackets()
+        this.clearConsole();
+        this.inspectorDetails.clear();
+    }
 }
+

@@ -2,6 +2,12 @@ export class InspectorDetails {
     public html: HtmlElement[] = []
     public js: string[] = []
     public css: CssBlock[] = []
+    
+    public clear() {
+        this.html.length = 0;
+        this.js.length = 0;
+        this.css.length = 0;
+    }
 }
 
 export class CssBlock {

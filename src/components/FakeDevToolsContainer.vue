@@ -10,7 +10,6 @@ const tabs = {
   Console,
   Network
 }
-
 const currentTabName: Ref<keyof typeof tabs> = ref("Inspector")
 </script>
 

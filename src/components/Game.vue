@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import FakeDevTools from "@/components/FakeDevTools.vue";
+import FakeDevTools from "@/components/FakeDevToolsContainer.vue";
 import GameWindowWrapper from "@/components/GameWindowWrapper.vue";
-import {provide, reactive} from "vue";
-import {INJECT_PROVIDE} from "@/ts/constants";
 
 </script>
 
