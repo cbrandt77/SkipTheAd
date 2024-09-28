@@ -21,7 +21,7 @@ const currentTabName: Ref<keyof typeof tabs> = ref("Inspector")
           v-for="(_, thisTabName) in tabs"
           v-bind:key="thisTabName"
           v-bind:class="['tab-button', { active: currentTabName === thisTabName }]"
-          @click="currentTabName = thisTabName"
+          @click="currentTabName = thisTabName; console.log('changed tab')"
       >
         {{ thisTabName }}
       </button>
@@ -39,7 +39,7 @@ const currentTabName: Ref<keyof typeof tabs> = ref("Inspector")
   margin-top: 1em;
   user-select: none;
   overflow-x: auto;
-  height: 300px;
+  height: 200px;
 }
 
 .tab-button {
@@ -83,5 +83,7 @@ const currentTabName: Ref<keyof typeof tabs> = ref("Inspector")
 
 .devtoolstab {
   position: absolute;
+  bottom: 0;
+  background-color: white;
 }
 </style>

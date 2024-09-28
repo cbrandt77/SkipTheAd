@@ -1,17 +1,11 @@
 <script setup lang="ts">
-import {hasDevtoolsDetails} from "@/ts/globals";
-import {inject} from "vue";
-import {INJECT_PROVIDE} from "@/ts/constants";
-
-const {populateGlobal, inspectorDetails, networkPackets, consoleLines} =  hasDevtoolsDetails()
-
-populateGlobal(inject(INJECT_PROVIDE.DevToolsDetails)!)
-
-// the other three are now mutable and should be reactive across the site
+import { devToolsDetails } from '@/ts/globals'
+const logLine = (s: string) => devToolsDetails.logLine(s)
 </script>
 
 <template>
-<canvas id="game-canvas"></canvas>
+<!--<canvas id="game-canvas"></canvas>-->
+  <button style="color:black" @click="logLine('button clicked')">test</button>
 </template>
 
 <style scoped>

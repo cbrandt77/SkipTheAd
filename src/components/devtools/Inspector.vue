@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {type InspectorDetails} from "@/ts/devtools/Inspector";
-import {inject} from "vue";
-import {INJECT_PROVIDE} from "@/ts/constants";
+import { devToolsDetails } from '@/ts/globals'
+
+
 </script>
 
 <template>
