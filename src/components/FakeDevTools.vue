@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import {type Component, type Ref} from "vue";
+import {type Component, type Ref, ref} from "vue";
 
 import Inspector from "@/components/devtools/Inspector.vue";
 import Console from "@/components/devtools/Console.vue";
 import Network from "@/components/devtools/Network.vue";
-import { ref } from "vue";
 
 const tabs = {
   Inspector,
@@ -16,15 +15,17 @@ const currentTabName: Ref<keyof typeof tabs> = ref("Inspector")
 </script>
 
 <template>
-  <div class="devtools">
-    <button
-        v-for="(_, thisTabName) in tabs"
-        v-bind:key="thisTabName"
-        v-bind:class="['tab-button', { active: currentTabName === thisTabName }]"
-        @click="currentTabName = thisTabName"
-    >
-      {{ thisTabName }}
-    </button>
+  <div class="devtools footer">
+    <div class="tablist">
+      <button
+          v-for="(_, thisTabName) in tabs"
+          v-bind:key="thisTabName"
+          v-bind:class="['tab-button', { active: currentTabName === thisTabName }]"
+          @click="currentTabName = thisTabName"
+      >
+        {{ thisTabName }}
+      </button>
+    </div>
     <component v-bind:is="tabs[currentTabName]" class="devtoolstab"></component>
   </div>
 </template>
@@ -36,10 +37,9 @@ const currentTabName: Ref<keyof typeof tabs> = ref("Inspector")
   border-radius: 2px;
   padding: 20px 30px;
   margin-top: 1em;
-  margin-bottom: 40px;
   user-select: none;
   overflow-x: auto;
-  
+  height: 300px;
 }
 
 .tab-button {
@@ -51,15 +51,37 @@ const currentTabName: Ref<keyof typeof tabs> = ref("Inspector")
   background: #f0f0f0;
   margin-bottom: -1px;
   margin-right: -1px;
+  color: black;
 }
+
 .tab-button:hover {
   background: #e0e0e0;
 }
+
 .tab-button:active {
   background: #e0e0e0;
 }
+
 .tab {
   border: 1px solid #ccc;
   padding: 10px;
+}
+
+/* TODO make good */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.tablist {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.devtoolstab {
+  position: absolute;
 }
 </style>
