@@ -1,0 +1,143 @@
+<!-- this level involves ads that duplicate each time one is closed -->
+<!-- this will require users to reroute on-x-click to burn all ads as opposed to open them all -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* properties here only used for testing */
+        body {
+            width: 100vw;
+            height: 100vh; /* temporary arbitrary value */
+            /*overflow: hidden;*/
+        }
+
+        #ad_container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .ad {
+            width: 30%;
+            height: 40%;
+            padding: 30px;
+
+            position: absolute;
+            
+            background-color: black;
+            border: solid gold;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .ad > h1 {
+            margin: 4px;
+
+            animation: flash 0.5s linear infinite;
+        }
+
+        @keyframes flash {
+            0% { color: white; }
+            50% { color: gold; }
+            100% { color: white; }
+        }
+
+        .ad > p {
+            position: absolute;
+            user-select: none;
+            top: 25px;
+            right: 30px;
+
+            color: white;
+            font-weight: bold;
+        }
+
+        .ad > p:hover {
+            cursor: pointer;
+            color: gray;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="ad_container">
+        <div id="init_ad" class="ad" style="top:20px;left:50px">
+            <h1>PLEASE DON'T CLOSE THIS AD!</h1>
+            <p id="init_close">X</p>
+        </div>
+    </div>
+
+    <button id="test_burn">Test Burn</button>
+
+
+    <script>
+        // list of popup advertisement messages
+        const adMessages = [
+            'CLICK HERE TO CURE CANCER',
+            'YOU\'VE WON $1,000,000. CLICK HERE TO CLAIM',
+            'YOU\'RE COMPUTR HAS BEN ENFECTED WITH VIRUS!',
+            'HOT SINGLE WEB SCRAPERS IN YOUR AREA'
+        ];
+
+        const xMax = 400;
+        const yMax = 300;
+
+        // create advertisement popup and append it to the html
+        function makeAd() {
+            // create div container
+            let ad = document.createElement('div');
+            ad.classList.add('ad');
+
+            // move ad to random position on the screen
+            ad.style.left = `${Math.floor(Math.random() * xMax)}px`;
+            ad.style.top = `${Math.floor(Math.random() * yMax)}px`;
+
+            // create text content from adMessages
+            let adText = document.createElement('h1');
+            adText.textContent = adMessages[Math.floor(Math.random() * adMessages.length)];
+            ad.appendChild(adText);
+
+            // create close button
+            let closeBtn = document.createElement('p');
+            closeBtn.textContent = 'X';
+            ad.appendChild(closeBtn);
+            closeBtn.addEventListener('click', ()=> {
+                ad.remove();
+                makeAd();
+                makeAd();
+            });
+
+            // finally append ad to html
+            document.getElementById('ad_container').appendChild(ad);
+        }
+
+        // add event listener to inital advertisement
+        document.getElementById('init_close').addEventListener('click', ()=> {
+            document.getElementById('init_ad').remove();
+            makeAd();
+            makeAd();
+        });
+
+        // burn ad that removes all ads from html
+        function burnAds() {
+            let adsCollection = document.getElementsByClassName('ad');
+            let ads = Array.from(adsCollection);
+            for (let i = 0; i < ads.length; i++) {
+                ads[i].remove();
+            }
+
+            // TODO: send signal to wrapper page that task has been successfully completed
+        }
+
+        document.getElementById('test_burn').addEventListener('click', burnAds);
+    </script>
+</body>
+</html>
