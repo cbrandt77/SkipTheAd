@@ -5,6 +5,7 @@ import App from './App.vue'
 import './index.css'
 
 import Game from "@/components/Game.vue";
+import Home from "@/components/Home.vue";
 
 import {createMemoryHistory, createRouter} from "vue-router";
 
@@ -22,7 +23,9 @@ const vuetify = createVuetify({
 
 
 const routes = [
-    {path: '', component: Game},
+    // {path: '', component: Game},
+    {path: '', component: Home},
+    {path: '/game', component: Game},
     // {path: '/levelselect', component: LevelSelect}
 ]
 
