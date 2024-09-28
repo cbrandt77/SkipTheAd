@@ -1,10 +1,10 @@
 <template>
   <!-- Screen Container -->
-  <div class="flex w-screen justify-center items-center bg-[#f9f3e5] text-[#4a4a4a] font-indie p-0">
+  <div class="flex w-screen justify-center items-center bg-[#f9f3e5] text-[#4a4a4a] font-indie p-0" :style="{ margin: '0 !important; '}">
     <!-- Game Container -->
     <div class="w-full max-w-4xl p-6 border">
 
-      <h1 class="text-5xl font-extrabold text-center mb-4 text-[#6d4c41] hand-drawn"  :style="{ marginTop: '35vh !important' }">
+      <h1 class="text-5xl font-extrabold text-center mb-4 text-[#6d4c41] hand-drawn">
         Whimsical Wanderings
       </h1>
       <p class="text-xl text-center text-[#795548] mb-8 italic">
@@ -94,15 +94,6 @@ const startGame = () => {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-
-* { margin: 0 !important; }
 
 .font-indie {
   font-family: 'Indie Flower', cursive;
