@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import Vue from 'vue'
+import { createApp } from 'vue'
+import DummyLevel from './levels/DummyLevel.vue'
+
+function onStartGame() {
+  createApp(DummyLevel).mount('#game-window-mount')
+}
+
+onStartGame()
 </script>
 
 <template>
 <div class="game-window-wrapper">
-  <div class="game-window" id="game-window"></div>
+  <div id="game-window-mount"/>
 </div>
 </template>
 
