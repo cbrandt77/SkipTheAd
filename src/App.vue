@@ -5,9 +5,8 @@ import GameWindowWrapper from "@/components/GameWindowWrapper.vue";
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-    
-    <div class="wrapper"></div>
+    <div class="titlebar">Skip The Ad!</div>
+    <div class="navbar"></div>
   </header>
 
   <main>
@@ -41,6 +40,10 @@ header {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
+  }
+  
+  header .navbar {
+  
   }
 }
 </style>

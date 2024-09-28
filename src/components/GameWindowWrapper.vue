@@ -5,7 +5,6 @@ import DummyLevel from './levels/DummyLevel.vue'
 function onStartGame() {
   createApp(DummyLevel).mount('#game-window-mount')
 }
-
 onStartGame()
 </script>
 
@@ -19,5 +18,6 @@ onStartGame()
 .game-window-wrapper {
   margin: auto;
   background-color: white;
+  place-items: center;
 }
 </style>
