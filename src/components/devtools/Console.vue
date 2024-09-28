@@ -5,13 +5,15 @@ import {useDevToolsGlobalData} from "@/ts/capabilities";
 const deets = useDevToolsGlobalData()
 </script>
 
-<template class="devtoolstab">
-    <div class="toolbar">
-      <v-btn class="clearbutton" id="console-clearbtn" v-tooltip="'Clear Console'" @click="deets.clearConsole()">
-        ButtonThing
+<template >
+  <div class="devtoolstab">
+    <v-toolbar class="toolbar">
+      <v-btn class="clearbutton" id="console-clearbtn" @click="deets.clearConsole()">
+        <v-icon class="clearbutton" icon="mdi-trash-can"/>
       </v-btn>
-    </div>
+    </v-toolbar>
     <table v-for="line in deets.consoleLines" class="consolelines">{{ line }}</table>
+  </div>
 </template>
 
 <style scoped>
@@ -21,6 +23,9 @@ const deets = useDevToolsGlobalData()
 }
 
 .clearbutton {
-  position: relative
+  position: relative;
+  flex: auto;
+  width: 20px;
+  height: 20px;
 }
 </style>

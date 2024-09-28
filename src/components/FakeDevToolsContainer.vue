@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {type Component, type Ref, ref} from "vue";
+import {type Ref, ref} from "vue";
 
 import Inspector from "@/components/devtools/Inspector.vue";
 import Console from "@/components/devtools/Console.vue";
@@ -11,11 +11,13 @@ const tabs = {
   Network
 }
 const currentTabName: Ref<keyof typeof tabs> = ref("Inspector")
+
+const footerHeight = ref(300)
 </script>
 
 <template>
   <div class="devtools footer">
-    <div class="tablist">
+    <div class="devtools-tablist">
       <button
           v-for="(_, thisTabName) in tabs"
           v-bind:key="thisTabName"
@@ -25,20 +27,18 @@ const currentTabName: Ref<keyof typeof tabs> = ref("Inspector")
         {{ thisTabName }}
       </button>
     </div>
-    <component v-bind:is="tabs[currentTabName]" class="devtoolstab"></component>
+    <div class="devtools-tab">
+      <component v-bind:is="tabs[currentTabName]" class="devtoolstab"/>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .devtools {
+  display: flex;
+  flex-direction: column;
   font-family: sans-serif;
-  border: 1px solid #eee;
-  border-radius: 2px;
-  padding: 20px 30px;
-  margin-top: 1em;
-  user-select: none;
-  overflow-x: auto;
-  height: 200px;
+  height: v-bind(footerHeight)
 }
 
 .tab-button {
@@ -74,10 +74,10 @@ const currentTabName: Ref<keyof typeof tabs> = ref("Inspector")
   right: 0;
 }
 
-.tablist {
-  position: absolute;
+.devtools-tablist {
+  position: sticky;
   top: 0;
-  left: 0;
+  width: 100%;
 }
 
 .devtoolstab {
