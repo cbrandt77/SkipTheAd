@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Screen Trial</title>
+
+    <!-- temporarily storing in head until more permanent home is found -->
+    <style>
+        body {
+            /* size properties */
+            padding: 0;
+            margin: 0;
+
+            /* style properties */
+            overflow: hidden;
+        }
+
+        #bluescreen {
+            /* size properties */
+            padding: 50px;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+
+            /* styling properties */
+            background-color: #0078d7;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+            /* reactive properties */
+            display: block; /* changed in javascript */
+        }
+
+        #bluescreen > h1 {
+            /* styling properties */
+            font-size: 4em;
+            font-weight: lighter;
+        }
+
+        #bluescreen > h2 {
+            /* styling properties */
+            font-size: 2em;
+            padding-top: 10px;
+        }
+
+        #codescreen {
+            /* size properties */
+            padding: 50px;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+
+            /* reactive properties */
+            display: none; /* changed in javascript */
+        }
+    </style>
+
+</head>
+<body>
+    <!--Display Blue Screen of Death on top of everything -->
+    <!-- Once conditions are fixed (handled in wrapper) show code screen -->
+    <!-- Accept code from user and show X button if it's correct -->
+    <div id="bluescreen">
+        <h1>:(</h1>
+        <h2>Your code didn't compile correctly
+            and contains bugs that need to be fixed.</h2>
+        <h2>Please check the terminal and correct any issues.</h2>
+    </div>
+
+    <div id="codescreen">
+        <label for="code_input">Enter the code here:</label>
+        <input type="text" id="code_input" name="code_input">
+        <button id="submit">Submit</button>
+
+        <button id="tempReturn">Return (remove me)</button>
+    </div>
+
+
+
+
+
+    <!-- script at bottom to prevent loading before references -->
+    <script>
+        // two main divs
+        const bluescreen = document.getElementById('bluescreen');
+        const codescreen = document.getElementById('codescreen');
+        const answer = 'cronos'; // TODO: replace with hashed answer &| store elsewhere
+
+        // wait for a signal from vue wrapper that code has been fixed
+        // in the meantime, this will be represented by user clicking BSOD
+        bluescreen.addEventListener('click', ()=> {
+            bluescreen.style.display = 'none';
+            codescreen.style.display = 'block';
+        });
+
+        // inverse of above
+        document.getElementById('tempReturn').addEventListener('click', ()=> {
+            bluescreen.style.display = 'block';
+            codescreen.style.display = 'none';
+        });
+
+        function checkAnswer() {
+            const input = document.getElementById('code_input').value;
+            if (input === answer) {
+                alert('Correct!'); // TODO: replace according to standard style
+                // TODO: alert wrapper of success and progress the level
+            } else {
+                alert("Incorrect. Please try again."); // TODO: replace according to standard style
+                // TODO: alert wrapper of failure
+                // TODO: consider providing a hint to the user
+
+                // clear the input field
+                document.getElementById('code_input').value = '';
+            }
+        }
+
+        document.getElementById('submit').addEventListener('click', checkAnswer);
+    </script>
+</body>
+</html>
