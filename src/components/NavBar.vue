@@ -1,9 +1,11 @@
 <script setup lang="ts">
-
+    //sign in
+    //shellhacks
+    //team info
 </script>
 
 <template>
-  <RouterView/>
+    <div></div>
 </template>
 
 <style scoped>

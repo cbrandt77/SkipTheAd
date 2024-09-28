@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { createApp } from 'vue'
+import {createApp, onMounted} from 'vue'
 import DummyLevel from './levels/DummyLevel.vue'
 
 function onStartGame() {
   createApp(DummyLevel).mount('#game-window-mount')
 }
 
-onStartGame()
+onMounted(() => {
+  onStartGame()
+})
+
 </script>
 
 <template>
@@ -19,5 +22,6 @@ onStartGame()
 .game-window-wrapper {
   margin: auto;
   background-color: white;
+  place-items: center;
 }
 </style>
