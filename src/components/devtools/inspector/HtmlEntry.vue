@@ -13,12 +13,15 @@ const {tag} = defineProps({
 	<div class="htmltagbase">
 		&lt;
 		<span class="htmltagname">{{ tag.type }}</span>
-		<span v-if="tag.classes.length !== 0">
-			class="
-			<span class="htmltag-attribute" v-for="(val, i) in tag.classes" :key="i">{{ val }} </span>
+		<span v-if="tag.classes.length !== 0" class="htmltag-attribute">
+			class="<span v-for="(val, i) in tag.classes" :key="i">{{ val }} </span>"
+		</span>
+		<span class="htmltag-attribute" v-for="(val, key) in tag.attributes" :key="key">
+			{{key}}="
+			<input v-if="typeof val === 'object' && val.editable" :value="val.value"/>
+			<span class="htmltag-attribute-value" v-else>{{val}}</span>
 			"
 		</span>
-		<span class="htmltag-attribute" v-for="(val, key) in tag.attributes" :key="key"> {{key}}="{{val}}"</span>
 		&gt;
 		<div class="htmltagbase" v-if="tag.children.length !== 0">
 			{{"\n"}}
