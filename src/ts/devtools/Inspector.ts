@@ -21,13 +21,27 @@ export class CssBlock {
     }
 }
 
+export interface HtmlElementOptions {
+    attributes?: Record<string, string>,
+    classes?: string[],
+    children?: HtmlElement[]
+}
+
+export interface AttributeOptions {
+    value: string,
+    editable: boolean
+}
+
 export class HtmlElement {
     public type: string
-    public attributes: Record<string, string>[] = []
+    public attributes: Record<string, string | AttributeOptions> = {}
     public classes: string[] = []
     public children: HtmlElement[] = []
     
-    constructor(type: string) {
-        this.type = type;
+    constructor(type: string, options: HtmlElementOptions = {}) {
+        this.type = type
+        this.attributes = options.attributes || {}
+        this.classes = options.classes || []
+        this.children = options.children || []
     }
 }

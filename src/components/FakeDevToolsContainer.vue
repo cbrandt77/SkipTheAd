@@ -38,7 +38,7 @@ const footerHeight = ref(300)
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
-  height: v-bind(footerHeight)
+  height: 300px /* TODO make resizable or just not awful */
 }
 
 .tab-button {
