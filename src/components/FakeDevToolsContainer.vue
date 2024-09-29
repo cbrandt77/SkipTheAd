@@ -39,6 +39,7 @@ const currentTabName: Ref<keyof typeof tabs> = ref("Inspector")
   user-select: none;
   overflow-x: auto;
   height: 200px;
+  z-index: 9;
 }
 
 .tab-button {

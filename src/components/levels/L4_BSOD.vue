@@ -1,10 +1,13 @@
 <template>
     <div>
         <div v-if="showBluescreen" id="bluescreen" @click="toggleScreens">
-            <!-- BSOD content here -->
+            <h1>:(</h1>
+            <h2>Your code didn't compile correctly
+                and contains bugs that need to be fixed.</h2>
+            <h2>Please check the terminal and correct any issues.</h2>
         </div>
         <div v-else id="codescreen">
-            <!-- Code screen content here -->
+            <label for="code_input">Enter the code here:</label>
             <input type="text" v-model="input" id="code_input" />
             <button id="submit" @click="checkAnswer">Submit</button>
             <button id="tempReturn" @click="toggleScreens">Return</button>
@@ -12,7 +15,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 const showBluescreen = ref(true)
@@ -43,8 +46,8 @@ function checkAnswer() {
     /* size properties */
     padding: 50px;
     margin: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 
     /* styling properties */
     background-color: #0078d7;
@@ -71,8 +74,8 @@ function checkAnswer() {
     /* size properties */
     padding: 50px;
     margin: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 
     /* styling properties */
     background-color: black;
