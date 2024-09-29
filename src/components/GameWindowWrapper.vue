@@ -20,7 +20,7 @@ onMounted(() => {
 </div>
 </template>
 
-<style scoped>
+<style>
 .game-window-wrapper {
   width: 100%;
   height: 100%;
@@ -38,7 +38,6 @@ onMounted(() => {
 #game-window-mount > * {
   grid-column: 2;
   grid-row: 2;
-  height: 100%;
   place-self: center;
   background-color: green;
 }

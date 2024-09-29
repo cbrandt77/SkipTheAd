@@ -13,6 +13,6 @@ const devToolsData = useDevToolsGlobalData()
   </div>
 </template>
 
-<style scoped>
+<style>
 
 </style>

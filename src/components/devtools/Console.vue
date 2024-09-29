@@ -14,7 +14,7 @@ const deets = useDevToolsGlobalData()
     <table v-for="line in deets.consoleLines" class="consolelines">{{ line }}</table>
 </template>
 
-<style scoped>
+<style>
 .consolelines {
   background-color:red;
   color:lime;

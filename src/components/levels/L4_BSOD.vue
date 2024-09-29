@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="showBluescreen" id="bluescreen" @click="toggleScreens">
+        <div v-if="showBluescreen" id="bluescreen">
             <h1>:(</h1>
             <h2>Your code didn't compile correctly
                 and contains bugs that need to be fixed.</h2>
@@ -26,6 +26,10 @@ function toggleScreens() {
     showBluescreen.value = !showBluescreen.value
 }
 
+function showCodescreen() {
+    showBluescreen.value = false
+}
+
 function checkAnswer() {
     if (input.value === answer) {
         alert('Correct!') // TODO: replace according to standard style
@@ -41,7 +45,7 @@ function checkAnswer() {
 }
 </script>
 
-<style scoped>
+<style>
 #bluescreen {
     /* size properties */
     padding: 50px;
