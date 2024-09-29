@@ -16,7 +16,7 @@ const deets = useDevToolsGlobalData()
   </div>
 </template>
 
-<style scoped>
+<style>
 .consolelines {
   background-color:red;
   color:lime;

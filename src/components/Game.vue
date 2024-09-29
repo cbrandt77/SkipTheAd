@@ -10,6 +10,7 @@ const levelId = ref(useRoute().params.id);
 </script>
 
 <template>
+  <div id="GameContainer">
   <header>
     <div class="titlebar">Skip The Ad!</div>
     <div class="navbar"></div>
@@ -20,37 +21,28 @@ const levelId = ref(useRoute().params.id);
     <GameWindowWrapper :levelId="parseInt(<string>levelId)"/>
     <FakeDevTools/>
   </main>
+  </div>
 </template>
 
-<style scoped>
+<style>
+
+.container {
+  height: 100%;
+}
+
 header {
   line-height: 1.5;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+main {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-  
-  header .navbar {
-    
-  }
+main > * {
+  background-color: lightblue;
+  border: 2px solid black;
 }
 </style>
