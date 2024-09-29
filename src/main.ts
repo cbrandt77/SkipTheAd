@@ -25,7 +25,7 @@ const vuetify = createVuetify({
 const routes = [
     // {path: '', component: Game},
     {path: '', component: Home},
-    {path: '/game', component: Game},
+    {path: '/game/:id', component: Game},
     // {path: '/levelselect', component: LevelSelect}
 ]
 
@@ -37,3 +37,4 @@ const router = createRouter({
 createApp(App).use(router)
               .use(vuetify)
               .mount('#app')
+

@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import {createApp} from "vue";
+import App from "@/App.vue";
 
 const router = useRouter();
 
 function goToLevel(id: number) {
   router.push(`/game/${id}`);
 }
+
 </script>
 
 <template>

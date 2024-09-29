@@ -1,20 +1,26 @@
 <script setup lang="ts">
-import {createApp, onMounted} from 'vue'
+import {type Component, createApp, onMounted, watch} from 'vue'
 import DummyLevel from './levels/DummyLevel.vue'
+import Level1 from '@/components/levels/level1.vue';
+import Level2 from "@/components/levels/level2.vue";
+import Level3 from "@/components/levels/level3.vue";
 
-function onStartGame() {
-  createApp(DummyLevel).mount('#game-window-mount')
-}
 
-onMounted(() => {
-  onStartGame()
+let { levelId } = defineProps({
+  levelId: {
+    type: Number,
+    default: 1
+  }
 })
+
+const levels = [Level1, Level2, Level3]
 
 </script>
 
 <template>
 <div class="game-window-wrapper">
-  <div id="game-window-mount"/>
+  <component :is="levels[levelId]" />
+  <button id="thing" @click="levelId++">asdknaslknasknskaldkansld</button>
 </div>
 </template>
 

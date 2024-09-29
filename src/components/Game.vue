@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import FakeDevTools from "@/components/FakeDevToolsContainer.vue";
 import GameWindowWrapper from "@/components/GameWindowWrapper.vue";
+import {useRoute, useRouter} from "vue-router";
+import {ref} from "vue";
+
+
+const levelId = ref(useRoute().params.id);
 
 </script>
 
@@ -12,7 +17,7 @@ import GameWindowWrapper from "@/components/GameWindowWrapper.vue";
   </header>
 
   <main>
-    <GameWindowWrapper/>
+    <GameWindowWrapper :levelId="parseInt(<string>levelId)"/>
     <FakeDevTools/>
   </main>
 </template>
